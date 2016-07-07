@@ -1,0 +1,14 @@
+{
+  "generator-kardbaard": {
+    "name": "klarify_forecast",
+    "version": "0.0.0",
+    "description": "Forecasting by Kugghuset",
+    "author": "Hugi",
+    "git": {
+      "url": "https://github.com/Kugghuset/klarify-forecast",
+      "branch": "master",
+      "rawUrl": "https://github.com/Kugghuset/klarify-forecast.git"
+    },
+    "license": "ISC"
+  }
+}
