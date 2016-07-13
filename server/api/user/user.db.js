@@ -21,11 +21,12 @@ const userModel = _sql.parseInitTable(
   sql
 );
 
+
 /**
  * Items from the user model which not to use in the params.
  */
 const nonParams = [
-  'password',
+  // 'password',
   'dateCreated',
   'dateUpdated',
   'isDisabled',

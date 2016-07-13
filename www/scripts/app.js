@@ -5,3 +5,4 @@ import './../style/main.scss';
 
 import routes from './routes';
 
+var bootstrap = require('bootstrap');

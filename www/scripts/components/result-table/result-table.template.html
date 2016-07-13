@@ -1,0 +1,100 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <h1>Klarify Forecast</h1>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-10">
+      <h2>Actuals</h2>
+
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th class="info"></th>
+                  <th v-for="financial in actuals" class="info">{{financial['title']}}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Revenue</th>
+                  <td v-for="financial in actuals"><input type="number" v-model="financial['Revenue']" disabled></th>
+              </tr>
+              <tr>
+                  <th>People Costs</th>
+                  <td v-for="financial in actuals"><input type="number" v-model="financial['People Costs']" disabled></th>
+              </tr>
+              <tr>
+                  <th>Other Costs</th>
+                  <td v-for="financial in actuals"><input type="number" v-model="financial['Other Costs']" disabled></th>
+              </tr>
+              <tr>
+                  <th class="info">Total Costs</th>
+                  <td v-for="financial in actuals" class="info"><input type="number" v-model="financial['Costs']" disabled></th>
+              </tr>
+              <tr>
+                  <th class="info">Profit/Loss</th>
+                  <td v-for="financial in actuals" class="info"><input type="number" v-model="financial['Profit']" disabled></th>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-10">
+      <h2>Forecast</h2>
+
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th class="info"></th>
+                  <th v-for="financial in forecast" class="info">{{financial['title']}}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Revenue</th>
+                  <td v-for="financial in forecast"><input type="number" v-model="financial['Estimated Revenue']"></th>
+              </tr>
+              <tr>
+                  <th>People Costs</th>
+                  <td v-for="financial in forecast"><input type="number" v-model="financial['Estimated People Costs']"></th>
+              </tr>
+              <tr>
+                  <th>Other Costs</th>
+                  <td v-for="financial in forecast"><input type="number" v-model="financial['Estimated Other Costs']"></th>
+              </tr>
+              <tr>
+                  <th class="info">Total Costs</th>
+                  <td v-for="financial in forecast" class="info"><input type="number" v-model="financial['Estimated Costs']"></th>
+              </tr>
+              <tr>
+                  <th class="info">Profit/Loss</th>
+                  <td v-for="financial in forecast" class="info"><input type="number" v-model="financial['Estimated Profit']"></th>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+
+    <div class="col-xs-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+      <button type="button" class="btn btn-primary btn-lg" v-on:click="post">Update Forecast</button>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+
+</div>

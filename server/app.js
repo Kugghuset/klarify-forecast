@@ -4,17 +4,19 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import sql from 'seriate';
 
-const app = express();
-
 import config from './config';
 import utils from './utils/utils';
+
+const app = express();
 
 // Set default configuration for Seriate
 sql.setDefaultConfig(config.db);
 
+
 // Use the body parser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 import routes from './routes';
 

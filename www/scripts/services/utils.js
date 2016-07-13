@@ -189,4 +189,5 @@ export default {
   http: http,
   storage: storage,
   replace: replace,
+  request: _request
 }

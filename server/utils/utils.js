@@ -160,6 +160,7 @@ export default {
   log: log,
   error: error,
   escapeRegex: escapeRegex,
+  handleError: handleError,
   literalRegExp: literalRegExp,
   objectify: objectify,
   headBy: headBy,

@@ -42,7 +42,7 @@ const LoginRouteComponent = Vue.extend({
       return _.every([
         // Email must be valid
         auth.validateEmail(this.email),
-        // Passwqord must exist
+        // Password must exist
         !!this.password,
       ]);
     },

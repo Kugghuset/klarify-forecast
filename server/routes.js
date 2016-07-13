@@ -24,6 +24,8 @@ export default (app, log) => {
 
   /// Start inject routes ///
   app.use('/api/users', require('./api/user').default);
+  app.use('/api/fact-financial', require('./api/factFinancial').default);
+  app.use('/api/forecast-financial', require('./api/forecastFinancial').default);
   /// Stop inject routes ///
 
   /// Start inject services ///
