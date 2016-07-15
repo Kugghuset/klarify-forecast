@@ -137,7 +137,7 @@ function setup() {
 }
 
 // Call the setup method to initialize all things auth.
-setup();
+//setup();
 
 console.log('Attached logout function to window for use when developing');
 window.logout = logout;

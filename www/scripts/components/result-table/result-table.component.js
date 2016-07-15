@@ -6,6 +6,7 @@ import factFinancial from '../../services/financials.service.js';
 import config from '../../config';
 import utils from '../../services/utils.js';
 import VueResource from 'vue-resource';
+import $ from "jquery";
 
 Vue.use(VueResource);
 
@@ -16,7 +17,23 @@ import auth from './../../services/auth';
 
 const ResultTable = Vue.extend({
   template,
+  ready: function(){
+    $(document).ready(function(){
+      $("#postButton").tooltip({
+        trigger: 'manual',
+        delay: { "show": 0, "hide": 3000 }
+      });
+    });
+  },
   props: {
+    connectionOk: {
+      type: Boolean,
+      default: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
   data: function () {
     factFinancial.getCurrentActuals(previous());
@@ -36,12 +53,19 @@ const ResultTable = Vue.extend({
   methods: {
     post: function (event) {
       this.forecast.forEach(function(item) {
+        setCalculatedFields(item);
         let url = config.baseUrl + '/api/forecast-financial/' + item.PeriodYYYYMM;
         Vue.http.put(url, item).then((response) => {
+          $("#postButton").tooltip('toggle');
+          this.connectionOk = true;
         }, (response) => {
-            console.log(response)
+          this.connectionOk = false;
         });
-      });
+      }.bind(this));
+    factFinancial.getCurrentActuals(previous());
+    factFinancial.getCurrentForecast(now());
+    let forecast = storage.get('currentForecast');
+    let actuals = storage.get('currentActuals');
     }
   }
 });
@@ -85,4 +109,9 @@ function setTitles (series) {
     let title = month.toString() + " " + year.toString();
     item.title = title;
   });
+}
+
+function setCalculatedFields (item)  {
+  item['Estimated Costs'] = parseInt(item['Estimated People Costs']) + parseInt(item['Estimated Other Costs']);
+  item['Estimated Profit'] = parseInt(item['Estimated Revenue']) - parseInt(item['Estimated People Costs']) - parseInt(item['Estimated Other Costs']);
 }

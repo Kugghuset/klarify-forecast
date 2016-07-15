@@ -1,4 +1,6 @@
-
+.forecast {
+    width: 1300px;
+}
 
 input {
     border: none;
@@ -21,4 +23,13 @@ input {
 
 :-ms-input-placeholder {  
     color: black;  
+}
+
+.tooltip-inner {
+    background-color: green;
+    color: #fff;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: green;
 }

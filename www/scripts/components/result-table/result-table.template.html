@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid forecast">
 
   <div class="row">
     <div class="col-xs-1"></div>
@@ -76,11 +76,11 @@
               </tr>
               <tr>
                   <th class="info">Total Costs</th>
-                  <td v-for="financial in forecast" class="info"><input type="number" v-model="financial['Estimated Costs']"></th>
+                  <td v-for="financial in forecast" class="info"><input type="number" placeholder="{{parseInt(financial['Estimated People Costs']) + parseInt(financial['Estimated Other Costs'])}}" disabled></th>
               </tr>
               <tr>
                   <th class="info">Profit/Loss</th>
-                  <td v-for="financial in forecast" class="info"><input type="number" v-model="financial['Estimated Profit']"></th>
+                  <td v-for="financial in forecast" class="info"><input type="number" placeholder="{{parseInt(financial['Estimated Revenue']) - parseInt(financial['Estimated People Costs']) - parseInt(financial['Estimated Other Costs'])}}" disabled></th>
               </tr>
           </tbody>
       </table>
@@ -91,8 +91,14 @@
 
   <div class="row">
     <div class="col-xs-1"></div>
-    <div class="col-xs-10">
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="post">Update Forecast</button>
+    <div class="col-xs-4">
+      <button id="postButton" type="button" class="btn btn-primary btn-lg" v-on:click="post"  data-toggle="tooltip" data-placement="right" title="Forecast has been updated!">Update Forecast</button>
+    </div>
+    <div class="col-xs-6">
+        <div v-if="!connectionOk" class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+            <strong>Somthing went wrong!</strong> Your forecast was not uploaded.
+        </div>
     </div>
     <div class="col-xs-1"></div>
   </div>
