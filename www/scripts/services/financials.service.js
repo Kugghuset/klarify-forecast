@@ -12,27 +12,21 @@ const {storage, http} = utils;
 let __currentFinancials;
 
 function getCurrentRemoteForecast(period) {
-
-	return new Promise((resolve, reject) => {
-		let _headers = auth.getHeaders();
-    http.get(`${config.baseUrl}/api/forecast-financial/${period}`, {headers: _headers})
-    .then((financials) => {
-      storage.set('currentForecast', financials);
-    })
-    .catch(reject);
-	})
+  let _headers = auth.getHeaders();
+  return http.get(`${config.baseUrl}/api/forecast-financial/${period}`, {headers: _headers})
+  .then((financials) => {
+    storage.set('currentForecast', financials);
+    return Promise.resolve(financials);
+  })
 }
 
 function getCurrentRemoteActuals(period) {
-
-	return new Promise((resolve, reject) => {
-		let _headers = auth.getHeaders();
-    http.get(`${config.baseUrl}/api/fact-financial/${period}`, {headers: _headers})
-    .then((financials) => {
-      storage.set('currentActuals', financials);
-    })
-    .catch(reject);
-	})
+  let _headers = auth.getHeaders();
+  return http.get(`${config.baseUrl}/api/fact-financial/${period}`, {headers: _headers})
+  .then((financials) => {
+    storage.set('currentActuals', financials);
+    return Promise.resolve(financials);
+  })
 }
 
 export default {

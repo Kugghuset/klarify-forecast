@@ -36,11 +36,23 @@ const ResultTable = Vue.extend({
     }
   },
   data: function () {
-    factFinancial.getCurrentActuals(previous());
-    factFinancial.getCurrentForecast(now());
 
-    let forecast = storage.get('currentForecast');
-    let actuals = storage.get('currentActuals');
+    factFinancial.getCurrentActuals(previous()).then(function () {
+      let actuals = storage.get('currentActuals');
+      setTitles(actuals);
+      this.actuals = actuals;
+    }.bind(this))
+    .catch( err => {console.log(err)});
+
+    factFinancial.getCurrentForecast(now()).then(function () {
+      let forecast = storage.get('currentForecast');
+      setTitles(forecast);
+      this.forecast = forecast;
+    }.bind(this))
+    .catch( err => {console.log(err)});
+
+    let forecast = storage.get('currentForecast') || [];
+    let actuals = storage.get('currentActuals') || [];
 
     setTitles(forecast);
     setTitles(actuals);
